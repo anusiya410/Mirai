@@ -213,28 +213,29 @@ export const HomePage: React.FC<HomePageProps> = ({
                   className="absolute -inset-10 rounded-full border border-[#C94F78]/20 pointer-events-none"
                 />
 
-                <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#FFF9F6] via-[#F7DDE3]/60 to-[#DDF3FC]/70 p-4 border border-[#C9A45C]/30 shadow-2xl flex items-center justify-center group hover:shadow-[0_25px_60px_-10px_rgba(201,164,92,0.4)] transition-shadow duration-500">
+                <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#FFF9F6] via-[#F7DDE3]/60 to-[#DDF3FC]/70 p-6 border border-[#C9A45C]/30 shadow-2xl flex items-center justify-center group hover:shadow-[0_25px_60px_-10px_rgba(201,164,92,0.4)] transition-shadow duration-500">
                   <BrandLogo size="hero" customUrl={settings.customLogoUrl} withGlow />
 
-                  {/* Floating Micro Badges with Shimmer */}
+                  {/* Floating Micro Badge: Top Left */}
                   <motion.div
-                    animate={{ y: [-6, 6, -6] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute -top-3 -right-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/30 shadow-lg flex items-center gap-2 animate-shimmer"
+                    animate={{ y: [-6, 6, -6], x: [-3, 3, -3] }}
+                    transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute top-2 -left-4 sm:top-6 sm:-left-10 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/35 shadow-xl flex items-center gap-2 animate-shimmer z-20"
                   >
                     <Award className="w-4 h-4 text-[#C9A45C]" />
-                    <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider">
+                    <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
                       Ideas • Innovation
                     </span>
                   </motion.div>
 
+                  {/* Floating Micro Badge: Bottom Right */}
                   <motion.div
-                    animate={{ y: [6, -6, 6] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                    className="absolute -bottom-3 -left-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/30 shadow-lg flex items-center gap-2 animate-shimmer"
+                    animate={{ y: [6, -6, 6], x: [3, -3, 3] }}
+                    transition={{ duration: 6.2, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                    className="absolute bottom-2 -right-4 sm:bottom-6 sm:-right-8 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/35 shadow-xl flex items-center gap-2 animate-shimmer z-20"
                   >
                     <Sparkles className="w-4 h-4 text-[#C94F78]" />
-                    <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider">
+                    <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
                       Impact Driven
                     </span>
                   </motion.div>
