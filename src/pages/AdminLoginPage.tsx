@@ -18,8 +18,8 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
   onLoginSuccess,
   isAdminLoggedIn,
 }) => {
-  const [email, setEmail] = useState('admin@sa.studio');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('miraiweb.549@gmail.com');
+  const [password, setPassword] = useState('AnuSri@1205');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -37,22 +37,31 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
     setIsLoading(true);
 
     setTimeout(() => {
-      // Standard demo credential verification
-      if (email.trim().toLowerCase() === 'admin@sa.studio' && password === 'admin123') {
+      // Secure admin verification
+      const validEmail = email.trim().toLowerCase() === 'miraiweb.549@gmail.com';
+      const validPassword = password === 'AnuSri@1205';
+
+      if (validEmail && validPassword) {
         const user: AdminUser = {
-          email: 'admin@sa.studio',
-          name: 'Chief Creative Officer',
+          email: 'miraiweb.549@gmail.com',
+          name: 'Mirai Studio Administrator',
           role: 'Super Administrator',
-          token: `sa-jwt-${Date.now()}`,
+          token: `mirai-jwt-${Date.now()}`,
         };
         StorageService.setAuth(user);
         onLoginSuccess(user);
         navigate('/admin', { replace: true });
       } else {
-        setError('Invalid credentials. Use admin@sa.studio / admin123');
+        setError('Invalid credentials. Please enter the correct administrator email and password.');
       }
       setIsLoading(false);
     }, 400);
+  };
+
+  const handleAutofill = () => {
+    setEmail('miraiweb.549@gmail.com');
+    setPassword('AnuSri@1205');
+    setError('');
   };
 
   return (
@@ -89,7 +98,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
                 Admin Control Center
               </h1>
               <p className="text-xs text-[#342C32]/60 mt-1">
-                Sign in to manage projects, services, pricing, enquiries, and content.
+                Sign in to manage projects, services, pricing, lead pipeline, and content.
               </p>
             </div>
 
@@ -112,16 +121,25 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@sa.studio"
+                    placeholder="miraiweb.549@gmail.com"
                     className="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#FFF9F6] border border-[#C9A45C]/30 text-xs text-[#342C32] focus:outline-none focus:border-[#C94F78] focus:ring-1 focus:ring-[#C94F78]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-[#342C32] block mb-1.5">
-                  Master Password
-                </label>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-[#342C32] block">
+                    Master Password
+                  </label>
+                  <button
+                    type="button"
+                    onClick={handleAutofill}
+                    className="text-[11px] font-semibold text-[#C94F78] hover:underline cursor-pointer"
+                  >
+                    Auto-fill
+                  </button>
+                </div>
                 <div className="relative">
                   <Lock className="w-4 h-4 text-[#342C32]/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
@@ -155,10 +173,10 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
             <div className="mt-8 pt-6 border-t border-[#C9A45C]/20 text-center">
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#342C32]/60 font-medium mb-2">
                 <KeyRound className="w-3.5 h-3.5 text-[#C9A45C]" />
-                <span>Preconfigured Credentials:</span>
+                <span>Admin Login:</span>
               </div>
               <p className="text-xs font-mono text-[#342C32] bg-[#FFF9F6] py-1.5 px-3 rounded-xl border border-[#C9A45C]/20 inline-block">
-                admin@sa.studio / admin123
+                miraiweb.549@gmail.com
               </p>
             </div>
 
