@@ -114,3 +114,29 @@ export interface TeamMember {
   createdAt: string;
   updatedAt: string;
 }
+
+export type PipelineStage =
+  | 'Lead'
+  | 'Contacted'
+  | 'Requirement Collected'
+  | 'Demo Created'
+  | 'Demo Approved'
+  | 'Development'
+  | 'Testing'
+  | 'Delivered';
+
+export interface PipelineLead {
+  id: string;
+  clientName: string;
+  businessName: string;
+  phone: string;
+  email: string;
+  stage: PipelineStage;
+  demoUrl?: string;
+  requirementNotes?: string;
+  dealValue?: string;
+  packageType?: 'Basic' | 'Professional' | 'Premium' | 'Custom';
+  nextAction?: string;
+  createdAt: string;
+  updatedAt: string;
+}

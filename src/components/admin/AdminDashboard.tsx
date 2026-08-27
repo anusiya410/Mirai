@@ -10,7 +10,9 @@ import { SettingsManager } from './SettingsManager';
 import { LogoManager } from './LogoManager';
 import { PricingManager } from './PricingManager';
 import { TeamManager } from './TeamManager';
-import { Project, Service, Testimonial, ContactEnquiry, SiteSettings, AdminUser, PricingTier, TeamMember } from '../../types';
+import { PipelineManager } from './PipelineManager';
+import { Project, Service, Testimonial, ContactEnquiry, SiteSettings, AdminUser, PricingTier, TeamMember, PipelineLead } from '../../types';
+import { StorageService } from '../../lib/storage';
 
 interface AdminDashboardProps {
   adminUser: AdminUser;
@@ -56,6 +58,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const [activeTab, setActiveTab] = useState<AdminTab>('dashboard');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [pipelineLeads, setPipelineLeads] = useState<PipelineLead[]>(() =>
+    StorageService.getPipelineLeads()
+  );
+
+  const handleSavePipelineLeads = (updated: PipelineLead[]) => {
+    setPipelineLeads(updated);
+    StorageService.savePipelineLeads(updated);
+  };
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -75,6 +85,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const tabLabel = (tab: AdminTab): string => {
     switch (tab) {
       case 'dashboard': return 'Operational Overview';
+      case 'pipeline': return 'Sales & Client Pipeline Workflow';
       case 'projects': return 'Portfolio Management';
       case 'services': return 'Core Solutions';
       case 'pricing': return 'Pricing & Retainers';
@@ -176,6 +187,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               visits={visits}
               onNavigate={(tab) => setActiveTab(tab)}
               onStatusChange={handleStatusChange}
+            />
+          )}
+
+          {activeTab === 'pipeline' && (
+            <PipelineManager
+              leads={pipelineLeads}
+              onSaveLeads={handleSavePipelineLeads}
+              showToast={showToast}
             />
           )}
 

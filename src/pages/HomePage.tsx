@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { BrandLogo } from '../components/BrandLogo';
 import { PageTransition } from '../components/PageTransition';
+import { JourneyRoadmap } from '../components/JourneyRoadmap';
 import { PricingTier, Project, Service, SiteSettings, Testimonial } from '../types';
 
 interface HomePageProps {
@@ -393,6 +394,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 3.2. 3D JOURNEY ROADMAP: FROM FIRST CALL TO LIVE WEBSITE                  */}
+      {/* ========================================================================= */}
+      <JourneyRoadmap />
 
       {/* ========================================================================= */}
       {/* 3.5. OUR PACKAGES PRICING PREVIEW SECTION                                  */}

@@ -16,8 +16,8 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
   onBackToSite,
   customLogoUrl,
 }) => {
-  const [email, setEmail] = useState('admin@sa-innovate.com');
-  const [password, setPassword] = useState('admin2026');
+  const [email, setEmail] = useState('miraiweb.549@gmail.com');
+  const [password, setPassword] = useState('AnuSri@1205');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,27 +27,30 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
     setIsLoading(true);
 
     setTimeout(() => {
-      // Secure local credential check
-      if (email.trim() && (password === 'admin2026' || password.length >= 6)) {
+      // Secure credential check
+      const validEmail = email.trim().toLowerCase() === 'miraiweb.549@gmail.com';
+      const validPassword = password === 'AnuSri@1205';
+
+      if (validEmail && validPassword) {
         const user: AdminUser = {
           email: email.trim(),
-          name: email.split('@')[0].toUpperCase() + ' (Administrator)',
+          name: 'Mirai Studio Administrator',
           role: 'Super Admin',
-          token: 'sa_token_' + Date.now(),
+          token: 'mirai_token_' + Date.now(),
         };
         StorageService.setAuth(user);
         setIsLoading(false);
         onLoginSuccess(user);
       } else {
         setIsLoading(false);
-        setError('Invalid administrator credentials. Try the default credentials provided.');
+        setError('Invalid administrator credentials. Please check your email and password.');
       }
     }, 600);
   };
 
   const fillDemoCredentials = () => {
-    setEmail('admin@sa-innovate.com');
-    setPassword('admin2026');
+    setEmail('miraiweb.549@gmail.com');
+    setPassword('AnuSri@1205');
     setError('');
   };
 
@@ -102,7 +105,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@sa-innovate.com"
+                placeholder="miraiweb.549@gmail.com"
                 className="w-full pl-11 pr-4 py-3 rounded-2xl bg-[#FFF9F6] border border-[#C9A45C]/30 focus:border-[#C94F78] focus:ring-2 focus:ring-[#E8B8C4]/30 outline-hidden text-sm text-[#342C32] transition-all"
               />
             </div>
@@ -118,7 +121,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
                 onClick={fillDemoCredentials}
                 className="text-[11px] text-[#C94F78] hover:underline font-semibold cursor-pointer"
               >
-                Auto-fill demo
+                Auto-fill credentials
               </button>
             </div>
             <div className="relative">
@@ -150,11 +153,11 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({
           </button>
         </form>
 
-        {/* Demo Helper Badge */}
+        {/* Credentials Info Badge */}
         <div className="mt-8 pt-6 border-t border-[#C9A45C]/20 text-center">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF9F6] border border-[#C9A45C]/30 text-[11px] text-[#342C32]/70 font-medium">
-            <KeyRound className="w-3 h-3 text-[#C9A45C]" />
-            <span>Demo: <strong className="text-[#342C32]">admin@sa-innovate.com</strong> / <strong className="text-[#342C32]">admin2026</strong></span>
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF9F6] border border-[#C9A45C]/30 text-[11px] text-[#342C32]/70 font-medium">
+            <KeyRound className="w-3.5 h-3.5 text-[#C9A45C]" />
+            <span>Admin: <strong className="text-[#342C32]">miraiweb.549@gmail.com</strong></span>
           </div>
         </div>
       </motion.div>

@@ -17,6 +17,7 @@ import { BrandLogo } from '../BrandLogo';
 
 export type AdminTab =
   | 'dashboard'
+  | 'pipeline'
   | 'projects'
   | 'services'
   | 'pricing'
@@ -49,6 +50,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
 }) => {
   const menuItems = [
     { id: 'dashboard' as AdminTab, name: 'Overview', icon: LayoutDashboard },
+    { id: 'pipeline' as AdminTab, name: 'Lead Pipeline', icon: FolderKanban },
     { id: 'projects' as AdminTab, name: 'Projects', icon: FolderKanban },
     { id: 'services' as AdminTab, name: 'Services', icon: Layers },
     { id: 'pricing' as AdminTab, name: 'Pricing & Retainers', icon: Tag },

@@ -207,11 +207,47 @@ export const PricingPage: React.FC<PricingPageProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. THREE COMPLETE PRICING CARDS                                           */}
+      {/* 2. THREE COMPLETE PRICING CARDS & SIGNATURE TRUST BANNER                  */}
       {/* ========================================================================= */}
       <section className="py-20 sm:py-24 bg-[#FFF9F6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           
+          {/* Signature Guarantee Trust Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14 p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-[#342C32] via-[#2A2328] to-[#1E191C] border-2 border-[#C9A45C]/40 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#C94F78] to-[#C9A45C] flex items-center justify-center text-white shrink-0 shadow-md">
+                <Sparkles className="w-6 h-6 animate-pulse" />
+              </div>
+              <div>
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#C9A45C] block mb-0.5">
+                  100% Risk-Free Guarantee
+                </span>
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
+                  “See Your Website Before We Build It.”
+                </h3>
+                <p className="text-xs sm:text-sm text-white/80 font-sans mt-0.5 max-w-xl">
+                  We build a working demo website based on your business idea before starting actual development.
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                onSelectTier('Free Demo Request (Before Payment)');
+                navigate('/contact');
+              }}
+              className="w-full md:w-auto px-6 py-3 rounded-full bg-[#C9A45C] text-[#342C32] text-xs font-bold uppercase tracking-widest hover:bg-white transition-all shadow-md shrink-0 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Request Free Demo Website</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-16">
             
             {/* CARD 1: BASIC */}

@@ -1,4 +1,4 @@
-import { Project, Service, Testimonial, ContactEnquiry, SiteSettings, AdminUser, PricingTier, TeamMember } from '../types';
+import { Project, Service, Testimonial, ContactEnquiry, SiteSettings, AdminUser, PricingTier, TeamMember, PipelineLead } from '../types';
 
 const STORAGE_KEYS = {
   PROJECTS: 'mirai_brand_projects_v2',
@@ -10,6 +10,7 @@ const STORAGE_KEYS = {
   AUTH: 'mirai_brand_admin_auth_v2',
   PRICING: 'mirai_brand_pricing_v2',
   TEAM: 'mirai_brand_team_v1',
+  PIPELINE: 'mirai_lead_pipeline_v1',
 };
 
 const DEFAULT_PROJECTS: Project[] = [
@@ -581,5 +582,127 @@ export const StorageService = {
   deleteTeamMember(id: string): void {
     const members = this.getTeamMembers();
     this.saveTeamMembers(members.filter((m) => m.id !== id));
+  },
+
+  // ─── Lead Pipeline Workflow ──────────────────────────────────────────────────
+
+  getPipelineLeads(): PipelineLead[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.PIPELINE);
+      if (data) return JSON.parse(data);
+    } catch {
+      // fallback
+    }
+    const defaultLeads: PipelineLead[] = [
+      {
+        id: 'lead-1',
+        clientName: 'Rajesh Kumar',
+        businessName: 'Royal Silk Sarees',
+        phone: '+91 98450 12345',
+        email: 'rajesh@royalsilks.in',
+        stage: 'Lead',
+        dealValue: '₹7,800',
+        packageType: 'Premium',
+        requirementNotes: 'Traditional silk boutique needing a luxury e-catalog & WhatsApp order system.',
+        nextAction: 'Cold call scheduled for today at 4:00 PM',
+        createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
+        updatedAt: new Date(Date.now() - 3600000 * 24).toISOString(),
+      },
+      {
+        id: 'lead-2',
+        clientName: 'Dr. Ananya Sen',
+        businessName: 'Aura Skin & Dental Clinic',
+        phone: '+91 99320 67890',
+        email: 'dr.ananya@auraclinic.com',
+        stage: 'Requirement Collected',
+        dealValue: '₹7,800',
+        packageType: 'Premium',
+        requirementNotes: 'Doctor booking portal with before/after gallery and patient testimonials.',
+        nextAction: 'Create free preview demo by tomorrow morning',
+        createdAt: new Date(Date.now() - 3600000 * 48).toISOString(),
+        updatedAt: new Date(Date.now() - 3600000 * 12).toISOString(),
+      },
+      {
+        id: 'lead-3',
+        clientName: 'Vikram Mehta',
+        businessName: 'Nova Cafe & Roastery',
+        phone: '+91 98110 54321',
+        email: 'vikram@novacafe.in',
+        stage: 'Demo Created',
+        demoUrl: 'https://preview.novacafe.mirai-demo.com',
+        dealValue: '₹6,000',
+        packageType: 'Professional',
+        requirementNotes: 'Modern artisanal cafe menu with Instagram gallery and table reservation.',
+        nextAction: 'Demo link sent via WhatsApp; awaiting approval call',
+        createdAt: new Date(Date.now() - 3600000 * 72).toISOString(),
+        updatedAt: new Date(Date.now() - 3600000 * 6).toISOString(),
+      },
+      {
+        id: 'lead-4',
+        clientName: 'Sneha Patel',
+        businessName: 'Verve Architectural Studio',
+        phone: '+91 98200 98765',
+        email: 'sneha@vervearch.com',
+        stage: 'Development',
+        demoUrl: 'https://preview.vervearch.mirai-demo.com',
+        dealValue: '₹7,800',
+        packageType: 'Premium',
+        requirementNotes: 'Minimal luxury architecture portfolio with 3D project modals & enquiry form.',
+        nextAction: 'Integrating admin dashboard and cloud database',
+        createdAt: new Date(Date.now() - 3600000 * 120).toISOString(),
+        updatedAt: new Date(Date.now() - 3600000 * 2).toISOString(),
+      },
+      {
+        id: 'lead-5',
+        clientName: 'Karthik Raman',
+        businessName: 'Zenith Logistics & Cargo',
+        phone: '+91 97890 11223',
+        email: 'karthik@zenithcargo.in',
+        stage: 'Delivered',
+        demoUrl: 'https://zenithcargo.in',
+        dealValue: '₹7,800',
+        packageType: 'Premium',
+        requirementNotes: 'Complete corporate fleet website with quote calculator & live tracking request.',
+        nextAction: 'Handover complete; scheduled for 30-day care check-in',
+        createdAt: new Date(Date.now() - 3600000 * 240).toISOString(),
+        updatedAt: new Date(Date.now() - 3600000 * 24).toISOString(),
+      },
+    ];
+    this.savePipelineLeads(defaultLeads);
+    return defaultLeads;
+  },
+
+  savePipelineLeads(leads: PipelineLead[]): void {
+    try {
+      localStorage.setItem(STORAGE_KEYS.PIPELINE, JSON.stringify(leads));
+      window.dispatchEvent(new Event('mirai_storage_update'));
+    } catch (e) {
+      console.error('Error saving pipeline leads', e);
+    }
+  },
+
+  addPipelineLead(lead: Omit<PipelineLead, 'id' | 'createdAt' | 'updatedAt'>): PipelineLead {
+    const leads = this.getPipelineLeads();
+    const newLead: PipelineLead = {
+      ...lead,
+      id: 'lead-' + Date.now(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    this.savePipelineLeads([newLead, ...leads]);
+    return newLead;
+  },
+
+  updatePipelineLead(id: string, updates: Partial<PipelineLead>): void {
+    const leads = this.getPipelineLeads();
+    const updated = leads.map((l) =>
+      l.id === id ? { ...l, ...updates, updatedAt: new Date().toISOString() } : l
+    );
+    this.savePipelineLeads(updated);
+  },
+
+  deletePipelineLead(id: string): void {
+    const leads = this.getPipelineLeads();
+    this.savePipelineLeads(leads.filter((l) => l.id !== id));
   },
 };
