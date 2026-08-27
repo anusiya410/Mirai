@@ -23,7 +23,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['All', 'Websites', 'Branding', 'UI/UX', 'Creative'];
+  const categories = ['All', 'Makeup Artist', 'Beauty Salon', 'Nail Artist', 'Bridal Artist', 'Websites', 'Branding'];
 
   const filteredProjects = projects.filter((project) => {
     const matchesCategory =

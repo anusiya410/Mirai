@@ -23,6 +23,7 @@ import {
 import { BrandLogo } from '../components/BrandLogo';
 import { PageTransition } from '../components/PageTransition';
 import { JourneyRoadmap } from '../components/JourneyRoadmap';
+import { InstagramToWebsite } from '../components/InstagramToWebsite';
 import { PricingTier, Project, Service, SiteSettings, Testimonial } from '../types';
 
 interface HomePageProps {
@@ -107,22 +108,37 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </span>
               </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-bold text-[#342C32] leading-[1.04] tracking-tight mb-8"
-              >
-                Beautiful Websites for{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C]">
-                  Beautiful Businesses.
-                </span>
-              </motion.h1>
+              <div className="mb-8">
+                {/* Line 1: Soft Fade Upward */}
+                <motion.span
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-bold text-[#342C32] leading-[1.04] tracking-tight block"
+                >
+                  Beautiful Websites for
+                </motion.span>
+                
+                {/* Line 2: Word-by-word reveal with single rose-gold shimmer sweep */}
+                <div className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-bold tracking-tight inline-flex items-center gap-3.5 flex-wrap">
+                  {['Beautiful', 'Businesses.'].map((word, wIdx) => (
+                    <motion.span
+                      key={word}
+                      initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      transition={{ duration: 0.7, delay: 0.35 + wIdx * 0.18, ease: [0.16, 1, 0.3, 1] }}
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] relative"
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
                 className="text-base sm:text-lg text-[#342C32]/80 leading-relaxed max-w-xl mb-10 font-sans font-normal"
               >
                 {settings.heroSubheading ||
@@ -403,6 +419,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 3.1. INSTAGRAM -> WEBSITE TRANSFORMATION SECTION                          */}
+      {/* ========================================================================= */}
+      <InstagramToWebsite />
 
       {/* ========================================================================= */}
       {/* 3.2. 3D JOURNEY ROADMAP: FROM FIRST CALL TO LIVE WEBSITE                  */}
@@ -791,34 +812,76 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* ========================================================================= */}
       {/* 6. FINAL CTA BANNER                                                       */}
       {/* ========================================================================= */}
-      <section className="py-20 sm:py-24 relative overflow-hidden bg-gradient-to-br from-[#342C32] via-[#2A2328] to-[#1E191C] text-white">
+      <section className="py-24 sm:py-32 relative overflow-hidden bg-gradient-to-br from-[#342C32] via-[#2A2328] to-[#1E191C] text-white">
+        {/* Large Elegant Rose-Gold Circular Glow behind Heading */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-[#C94F78]/30 via-[#E8B8C4]/25 to-[#C9A45C]/30 rounded-full blur-[140px] pointer-events-none" />
+
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <BrandLogo size="md" customUrl={settings.customLogoUrl} className="mx-auto mb-6" withGlow />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-8"
+          >
+            <BrandLogo size="md" customUrl={settings.customLogoUrl} className="mx-auto" withGlow />
+          </motion.div>
           
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-6">
-            Ready to Build Something Extraordinary?
-          </h2>
+          {/* Line-by-Line Heading Reveal */}
+          <div className="mb-6 space-y-2">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white"
+            >
+              “Your Work Is Beautiful.
+            </motion.h2>
 
-          <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto mb-10 font-sans">
-            Let us turn your ideas into innovative digital solutions that create lasting impact.
-          </p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.28 }}
+              className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C]"
+            >
+              Your Website Should Be Too.”
+            </motion.h2>
+          </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto mb-10 font-sans leading-relaxed"
+          >
+            Let us build an exquisite, automated digital identity that turns casual admirers into loyal, high-ticket clientele.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
             <Link
               to="/contact"
-              className="w-full sm:w-auto px-9 py-4 rounded-full bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] text-white text-xs font-bold uppercase tracking-widest shadow-xl hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="group w-full sm:w-auto px-10 py-4.5 rounded-full bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] text-white text-xs font-bold uppercase tracking-[0.2em] shadow-2xl hover:shadow-[0_12px_30px_rgba(201,164,92,0.45)] hover:scale-103 transition-all flex items-center justify-center gap-2.5 cursor-pointer animate-shimmer"
             >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <span>START MY WEBSITE</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
             </Link>
 
             <Link
-              to="/services"
-              className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-center"
+              to="/projects"
+              className="w-full sm:w-auto px-9 py-4.5 rounded-full border border-white/25 text-white text-xs font-bold uppercase tracking-[0.15em] hover:bg-white/10 hover:border-white transition-all text-center"
             >
-              <span>Explore Services</span>
+              <span>VIEW OUR WORK</span>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </PageTransition>

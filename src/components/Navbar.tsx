@@ -54,21 +54,29 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <header
+      <motion.header
+        initial={{ y: -25, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/80 backdrop-blur-md py-3 shadow-[0_4px_25px_rgba(201,79,120,0.08)] border-b border-[#C9A45C]/25'
+            ? 'bg-white/85 backdrop-blur-md py-3 shadow-[0_4px_25px_rgba(201,79,120,0.08)] border-b border-[#C9A45C]/25'
             : 'bg-white/40 backdrop-blur-sm py-4 border-b border-[#C9A45C]/20'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
-          {/* Exact Brand Logo + Title -> Link to Home */}
+          {/* Exact Brand Logo + Title -> Link to Home with Subtle Float */}
           <Link
             to="/"
             className="flex items-center gap-3.5 group cursor-pointer"
             title="Mirai — Ideas • Innovation • Impact"
           >
-            <BrandLogo size="md" customUrl={customLogoUrl} withGlow={isScrolled} />
+            <motion.div
+              animate={{ y: [-2, 2, -2] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <BrandLogo size="md" customUrl={customLogoUrl} withGlow={isScrolled} />
+            </motion.div>
             <div className="flex flex-col">
               <span className="font-serif text-xl font-bold tracking-tight text-[#342C32] group-hover:text-[#C94F78] transition-colors leading-tight">
                 Mirai
@@ -91,19 +99,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <NavLink
                   key={link.name}
                   to={link.path}
-                  className={`text-[13px] uppercase tracking-widest font-medium transition-all relative py-1.5 ${
+                  className={`text-[13px] uppercase tracking-widest font-medium transition-all relative py-1.5 group ${
                     isActive
                       ? 'text-[#C94F78] font-bold drop-shadow-[0_0_12px_rgba(201,79,120,0.3)]'
                       : 'text-[#342C32]/80 hover:text-[#C94F78]'
                   }`}
                 >
-                  {link.name}
-                  {isActive && (
+                  <span>{link.name}</span>
+                  {/* Underline on Hover & Active Indicator */}
+                  {isActive ? (
                     <motion.div
                       layoutId="activeNavUnderline"
                       className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] rounded-full shadow-[0_0_8px_rgba(201,164,92,0.6)]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
+                  ) : (
+                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C9A45C] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   )}
                 </NavLink>
               );
@@ -136,14 +147,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ShieldCheck className="w-4 h-4" />
             </button>
 
-            {/* CTA Button: Let's Work Together -> navigates to /contact */}
-            <Link
-              to="/contact"
-              className="px-6 py-3 bg-[#342C32] text-white text-[11px] uppercase tracking-[0.15em] font-semibold rounded-full hover:bg-[#C9A45C] transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_8px_20px_rgba(201,164,92,0.35)] hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
-            >
-              <span>Let's Work Together</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
+            {/* CTA Button: Let's Work Together with Magnetic Hover & Arrow Glide */}
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                to="/contact"
+                className="group px-6 py-3 bg-[#342C32] text-white text-[11px] uppercase tracking-[0.15em] font-semibold rounded-full hover:bg-gradient-to-r hover:from-[#C94F78] hover:to-[#C9A45C] transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_8px_20px_rgba(201,164,92,0.35)] flex items-center gap-2 cursor-pointer"
+              >
+                <span>LET'S WORK TOGETHER</span>
+                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -164,7 +177,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Animated Full-screen Drawer */}
       <AnimatePresence>

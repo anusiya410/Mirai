@@ -349,11 +349,16 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                   High-converting digital experience designed to turn visitors into booked clients.
                 </p>
 
-                {/* Price Display */}
+                {/* Price Display with Shimmer Pass */}
                 <div className="pb-6 mb-6 border-b border-[#C9A45C]/20">
-                  <div className="font-serif text-3xl sm:text-4xl font-extrabold text-[#342C32]">
-                    ₹6,000 – ₹8,000
-                  </div>
+                  <motion.div
+                    initial={{ scale: 0.95 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    className="font-serif text-3xl sm:text-4xl font-extrabold text-[#342C32] relative inline-block"
+                  >
+                    <span>₹6,000 – ₹8,000</span>
+                  </motion.div>
                   <span className="text-xs text-[#C94F78] font-bold font-sans block mt-1">
                     Best Value for Growing Businesses
                   </span>
@@ -373,17 +378,24 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                     'Modern Luxury UI/UX Design',
                     'Enhanced Visual Customization',
                   ].map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 text-xs text-[#342C32]/90 font-medium">
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.05 * idx }}
+                      className="flex items-center gap-2.5 text-xs text-[#342C32]/90 font-medium"
+                    >
                       <CheckCircle2 className="w-4 h-4 text-[#C94F78] shrink-0" />
                       <span>{feat}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
 
               <button
                 onClick={() => handleSelectPackage('Professional', '₹6,000 – ₹8,000')}
-                className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] shadow-lg hover:shadow-xl hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] shadow-lg hover:shadow-xl hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer animate-shimmer"
               >
                 <span>View Details & Enquire</span>
                 <ArrowRight className="w-4 h-4" />

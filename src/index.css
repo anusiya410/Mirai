@@ -140,7 +140,7 @@
     transparent 100%
   );
   animation: shimmer-sweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  pointer-events-none;
+  pointer-events: none;
 }
 
 .animate-ripple {
