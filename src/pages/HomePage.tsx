@@ -111,16 +111,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[74px] font-bold text-[#342C32] leading-[1.02] tracking-tight mb-8"
+                className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-bold text-[#342C32] leading-[1.04] tracking-tight mb-8"
               >
-                Ideas That{' '}
+                Beautiful Websites for{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C]">
-                  Inspire.
-                </span>
-                <br />
-                Innovation That{' '}
-                <span className="italic font-normal text-[#C9A45C]">
-                  Transforms.
+                  Beautiful Businesses.
                 </span>
               </motion.h1>
 
@@ -131,7 +126,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 className="text-base sm:text-lg text-[#342C32]/80 leading-relaxed max-w-xl mb-10 font-sans font-normal"
               >
                 {settings.heroSubheading ||
-                  'Mirai Studio crafts bespoke digital identities, high-performance web platforms, and visionary brand experiences where artistry meets engineered precision.'}
+                  'Mirai Studio crafts bespoke digital identities, high-performance web platforms, and visionary brand experiences tailored for beauty brands, studios, salons, and modern creators.'}
               </motion.p>
 
               {/* Action Buttons */}
@@ -142,19 +137,19 @@ export const HomePage: React.FC<HomePageProps> = ({
                 className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
               >
                 <Link
-                  to="/projects"
-                  className="w-full sm:w-auto px-8 py-4 bg-[#342C32] text-white text-xs uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-[#C9A45C] transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-[0_10px_25px_rgba(201,164,92,0.4)] hover:-translate-y-0.5 flex items-center justify-center gap-3 cursor-pointer group text-center"
+                  to="/contact"
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] text-white text-xs uppercase tracking-[0.2em] font-bold rounded-full hover:shadow-[0_10px_25px_rgba(201,164,92,0.4)] hover:-translate-y-0.5 transition-all shadow-xl flex items-center justify-center gap-2.5 cursor-pointer group text-center"
                 >
-                  <span>Explore Selected Work</span>
+                  <span>GET YOUR WEBSITE</span>
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
 
                 <Link
-                  to="/contact"
-                  className="w-full sm:w-auto px-8 py-4 bg-white/80 backdrop-blur-xs border border-[#C9A45C]/40 text-[#342C32] text-xs uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-[#F7DDE3] hover:border-[#C94F78] transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 cursor-pointer text-center"
+                  to="/projects"
+                  className="w-full sm:w-auto px-8 py-4 bg-white border border-[#C9A45C]/40 text-[#342C32] text-xs uppercase tracking-[0.2em] font-bold rounded-full hover:bg-[#FFF9F6] hover:border-[#342C32] transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2 cursor-pointer text-center"
                 >
-                  <Sparkles className="w-4 h-4 text-[#C94F78]" />
-                  <span>Let's Work Together</span>
+                  <span>VIEW OUR WORK</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
 
