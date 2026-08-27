@@ -177,59 +177,69 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             {/* Hero Right Brand Showcase Card */}
-            <div className="lg:col-span-5 flex justify-center items-center py-6">
+            <div className="lg:col-span-5 flex justify-center items-center py-6 overflow-visible">
               <motion.div
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative flex items-center justify-center"
+                className="relative flex items-center justify-center overflow-visible"
               >
                 {/* Rotating Outer Dotted Orbital Ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
-                  className="absolute -inset-4 sm:-inset-6 rounded-full border border-dashed border-[#C9A45C]/40 pointer-events-none"
+                  className="absolute -inset-5 sm:-inset-7 rounded-full border border-dashed border-[#C9A45C]/40 pointer-events-none"
                 />
 
                 {/* Counter-Rotating Rose-Gold Orbital Ring */}
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-                  className="absolute -inset-8 sm:-inset-10 rounded-full border border-[#C94F78]/25 pointer-events-none"
+                  className="absolute -inset-9 sm:-inset-12 rounded-full border border-[#C94F78]/25 pointer-events-none"
                 />
 
-                {/* Circular Glassmorphic Showcase Base */}
-                <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-92 md:h-92 rounded-full bg-gradient-to-tr from-white via-[#FFF9F6] to-[#F7EBEF] p-4 sm:p-6 border border-[#C9A45C]/35 shadow-[0_20px_50px_rgba(201,164,92,0.22)] flex items-center justify-center">
-                  
-                  {/* Central Pristine Centered Logo */}
-                  <div className="w-full h-full flex items-center justify-center">
-                    <BrandLogo size="hero" customUrl={settings.customLogoUrl} withGlow className="w-48 h-48 sm:w-60 sm:h-60" />
+                {/* Ambient Soft Glow behind Medallion */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#C94F78]/25 via-[#C9A45C]/25 to-[#5D9FBE]/20 blur-2xl scale-110 pointer-events-none" />
+
+                {/* Central Brand Medallion Circle */}
+                <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-88 md:h-88 rounded-full bg-white p-2 sm:p-3 border-2 border-[#C9A45C]/50 shadow-[0_20px_50px_rgba(201,164,92,0.25)] flex items-center justify-center overflow-hidden group">
+                  <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-[#FFF9F6]">
+                    {settings.customLogoUrl ? (
+                      <img
+                        src={settings.customLogoUrl}
+                        alt="Mirai — Ideas • Innovation • Impact Official Logo"
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    ) : (
+                      <BrandLogo size="hero" withGlow={false} className="w-full h-full" />
+                    )}
                   </div>
-
-                  {/* Floating Micro Badge 1: Top Left / Top Right */}
-                  <motion.div
-                    animate={{ y: [-5, 5, -5] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute -top-3 right-0 sm:right-2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C9A45C]/40 shadow-lg flex items-center gap-1.5 z-20 animate-shimmer"
-                  >
-                    <Award className="w-3.5 h-3.5 text-[#C9A45C]" />
-                    <span className="text-[10px] sm:text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
-                      IDEAS • INNOVATION
-                    </span>
-                  </motion.div>
-
-                  {/* Floating Micro Badge 2: Bottom Left */}
-                  <motion.div
-                    animate={{ y: [5, -5, 5] }}
-                    transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                    className="absolute -bottom-3 left-0 sm:left-2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C94F78]/35 shadow-lg flex items-center gap-1.5 z-20 animate-shimmer"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-[#C94F78]" />
-                    <span className="text-[10px] sm:text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
-                      IMPACT DRIVEN
-                    </span>
-                  </motion.div>
                 </div>
+
+                {/* Floating Micro Badge 1: Top-Left */}
+                <motion.div
+                  animate={{ y: [-5, 5, -5], x: [-2, 2, -2] }}
+                  transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -top-3 -left-4 sm:-left-8 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-[#C9A45C]/45 shadow-xl flex items-center gap-2 z-30 animate-shimmer"
+                >
+                  <Award className="w-4 h-4 text-[#C9A45C] shrink-0" />
+                  <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
+                    IDEAS • INNOVATION
+                  </span>
+                </motion.div>
+
+                {/* Floating Micro Badge 2: Bottom-Right */}
+                <motion.div
+                  animate={{ y: [5, -5, 5], x: [2, -2, 2] }}
+                  transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+                  className="absolute -bottom-3 -right-4 sm:-right-8 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-[#C94F78]/45 shadow-xl flex items-center gap-2 z-30 animate-shimmer"
+                >
+                  <Sparkles className="w-4 h-4 text-[#C94F78] shrink-0" />
+                  <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
+                    IMPACT DRIVEN
+                  </span>
+                </motion.div>
+
               </motion.div>
             </div>
 
