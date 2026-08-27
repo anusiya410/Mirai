@@ -19,6 +19,7 @@ import {
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { PageTransition } from '../components/PageTransition';
 import { BrandLogo } from '../components/BrandLogo';
+import { BloomingBotanicalPlant } from '../components/BloomingBotanicalPlant';
 import { SiteSettings } from '../types';
 
 interface AboutPageProps {
@@ -149,30 +150,56 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings }) => {
   return (
     <PageTransition>
       {/* ========================================================================= */}
-      {/* TOP HERO & BREADCRUMBS                                                    */}
+      {/* TOP HERO & BREADCRUMBS WITH BLOOMING BOTANICAL ANIMATION                  */}
       {/* ========================================================================= */}
       <section className="pt-32 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden bg-mesh-luxury border-b border-[#C9A45C]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <Breadcrumbs items={[{ label: 'About Us' }]} className="mb-6" />
 
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3.5 mb-4">
-              <div className="w-10 h-[1.5px] bg-[#C9A45C]" />
-              <span className="text-[11px] font-bold tracking-[0.35em] text-[#5D9FBE] uppercase font-sans">
-                About Mirai Studio
-              </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            {/* Left Content Column */}
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-3.5 mb-4">
+                <div className="w-10 h-[1.5px] bg-[#C9A45C]" />
+                <span className="text-[11px] font-bold tracking-[0.35em] text-[#5D9FBE] uppercase font-sans">
+                  About Mirai Studio
+                </span>
+              </div>
+
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#342C32] tracking-tight leading-tight mb-6">
+                Ideas That Inspire.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] to-[#C9A45C]">
+                  Impact That Endures.
+                </span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-[#342C32]/80 leading-relaxed font-sans mb-8">
+                We are an independent digital agency built at the intersection of haute couture aesthetics and high-performance software engineering.
+              </p>
+
+              <div className="flex items-center gap-6 pt-2">
+                <Link
+                  to="/contact"
+                  className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#C94F78] to-[#C9A45C] text-white text-xs font-bold uppercase tracking-widest shadow-lg hover:shadow-xl hover:opacity-95 transition-all inline-flex items-center gap-2"
+                >
+                  <span>Work With Us</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/projects"
+                  className="text-xs font-bold uppercase tracking-widest text-[#342C32]/80 hover:text-[#C94F78] transition-colors"
+                >
+                  View Selected Work →
+                </Link>
+              </div>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#342C32] tracking-tight leading-tight mb-6">
-              Ideas That Inspire.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] to-[#C9A45C]">
-                Impact That Endures.
-              </span>
-            </h1>
+            {/* Right Column: Blooming Plant & Tulip Growth Animation */}
+            <div className="lg:col-span-5 flex justify-center items-center">
+              <BloomingBotanicalPlant />
+            </div>
 
-            <p className="text-base sm:text-lg text-[#342C32]/80 leading-relaxed font-sans">
-              We are an independent digital agency built at the intersection of haute couture aesthetics and high-performance software engineering.
-            </p>
           </div>
         </div>
       </section>

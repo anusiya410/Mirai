@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { PageTransition } from '../components/PageTransition';
+import { BloomingBotanicalPlant } from '../components/BloomingBotanicalPlant';
 import { Testimonial } from '../types';
 
 interface WhyUsPageProps {
@@ -122,38 +123,56 @@ export const WhyUsPage: React.FC<WhyUsPageProps> = ({ testimonials }) => {
   return (
     <PageTransition>
       {/* ========================================================================= */}
-      {/* HERO & BREADCRUMBS                                                        */}
+      {/* HERO & BREADCRUMBS WITH BOTANICAL BLOOM ANIMATION                         */}
       {/* ========================================================================= */}
       <section className="pt-32 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden bg-mesh-luxury border-b border-[#C9A45C]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <Breadcrumbs items={[{ label: 'Why Choose Us' }]} className="mb-6" />
 
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3.5 mb-4">
-              <div className="w-10 h-[1.5px] bg-[#C9A45C]" />
-              <span className="text-[11px] font-bold tracking-[0.35em] text-[#5D9FBE] uppercase font-sans">
-                The Mirai Distinction
-              </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            {/* Left Content Column */}
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-3.5 mb-4">
+                <div className="w-10 h-[1.5px] bg-[#C9A45C]" />
+                <span className="text-[11px] font-bold tracking-[0.35em] text-[#5D9FBE] uppercase font-sans">
+                  The Mirai Distinction
+                </span>
+              </div>
+
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#342C32] tracking-tight leading-tight mb-6">
+                Why Discerning Brands{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] to-[#C9A45C]">
+                  Trust Mirai Studio.
+                </span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-[#342C32]/80 leading-relaxed font-sans mb-8">
+                We bridge the gap between visionary high-fashion beauty aesthetics and robust software engineering, delivering digital assets that perform with speed and prestige.
+              </p>
+
+              <div className="flex items-center gap-6 pt-2">
+                <Link
+                  to="/contact"
+                  className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#C94F78] to-[#C9A45C] text-white text-xs font-bold uppercase tracking-widest shadow-lg hover:shadow-xl hover:opacity-95 transition-all inline-flex items-center gap-2"
+                >
+                  <span>Start a Project</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/pricing"
+                  className="text-xs font-bold uppercase tracking-widest text-[#342C32]/80 hover:text-[#C94F78] transition-colors"
+                >
+                  Explore Pricing →
+                </Link>
+              </div>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#342C32] tracking-tight leading-tight mb-6">
-              Why Discerning Brands{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] to-[#C9A45C]">
-                Trust Mirai Studio.
-              </span>
-            </h1>
+            {/* Right Column: Blooming Plant Animation */}
+            <div className="lg:col-span-5 flex justify-center items-center">
+              <BloomingBotanicalPlant />
+            </div>
 
-            <p className="text-base sm:text-lg text-[#342C32]/80 leading-relaxed font-sans mb-8">
-              We bridge artistic sensibility with technical precision. We don't settle for ordinary templates—we engineer bespoke digital assets that stand the test of time.
-            </p>
-
-            <Link
-              to="/contact"
-              className="px-8 py-4 rounded-full bg-[#342C32] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#C94F78] transition-all shadow-md inline-flex items-center gap-2"
-            >
-              <span>Work With Us</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
           </div>
         </div>
       </section>
