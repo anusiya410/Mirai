@@ -235,7 +235,7 @@ export const JourneyRoadmap: React.FC<{ compact?: boolean }> = ({ compact = fals
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mb-14 rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#342C32] via-[#2D232A] to-[#1F191D] border-2 border-[#C9A45C]/40 shadow-2xl relative overflow-hidden text-white"
+          className="mb-14 rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#342C32] via-[#2D232A] to-[#1F191D] border-2 border-[#C9A45C]/40 shadow-2xl relative overflow-hidden text-white animate-shimmer"
         >
           {/* Subtle Glow Spheres inside banner */}
           <div className="absolute -top-16 -right-16 w-64 h-64 bg-[#C9A45C]/20 rounded-full blur-3xl pointer-events-none" />
@@ -670,6 +670,36 @@ export const JourneyRoadmap: React.FC<{ compact?: boolean }> = ({ compact = fals
                     {/* Visual 7: WEBSITE DELIVERY */}
                     {currentStep.visualType === 'delivery' && (
                       <div className="relative flex flex-col items-center text-center">
+                        {/* Celebration Confetti Particles */}
+                        {[
+                          { x: -50, y: -40, color: '#C9A45C', size: 6 },
+                          { x: 50, y: -45, color: '#C94F78', size: 5 },
+                          { x: -65, y: 15, color: '#5D9FBE', size: 4 },
+                          { x: 65, y: 20, color: '#C9A45C', size: 5 },
+                          { x: 0, y: -60, color: '#E8B8C4', size: 7 },
+                        ].map((c, i) => (
+                          <motion.div
+                            key={i}
+                            animate={{
+                              y: [c.y, c.y - 15, c.y],
+                              x: [c.x, c.x + 5, c.x],
+                              rotate: [0, 180, 360],
+                              scale: [0.8, 1.2, 0.8],
+                            }}
+                            transition={{
+                              duration: 2.5 + i * 0.4,
+                              repeat: Infinity,
+                              ease: 'easeInOut',
+                            }}
+                            style={{
+                              backgroundColor: c.color,
+                              width: c.size,
+                              height: c.size,
+                            }}
+                            className="absolute rounded-full pointer-events-none shadow-xs"
+                          />
+                        ))}
+
                         <motion.div
                           animate={{ y: [-10, 10, -10] }}
                           transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
@@ -691,10 +721,22 @@ export const JourneyRoadmap: React.FC<{ compact?: boolean }> = ({ compact = fals
                     {/* Visual 8: SUPPORT & MAINTENANCE */}
                     {currentStep.visualType === 'support' && (
                       <div className="relative flex flex-col items-center text-center">
+                        {/* Gold and Pink Celebration Ambient Bursts */}
+                        <motion.div
+                          animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                          className="absolute w-24 h-24 rounded-full border-2 border-[#C94F78] pointer-events-none"
+                        />
+                        <motion.div
+                          animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                          className="absolute w-24 h-24 rounded-full border-2 border-[#C9A45C] pointer-events-none"
+                        />
+
                         <motion.div
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                          className="w-18 h-18 rounded-full bg-[#F7DDE3] text-[#C94F78] flex items-center justify-center shadow-xl mb-3 border-2 border-[#C94F78]/30"
+                          className="w-18 h-18 rounded-full bg-[#F7DDE3] text-[#C94F78] flex items-center justify-center shadow-xl mb-3 border-2 border-[#C94F78]/30 relative z-10"
                         >
                           <Heart className="w-8 h-8 fill-current" />
                         </motion.div>

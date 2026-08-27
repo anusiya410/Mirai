@@ -55,6 +55,17 @@ export const LogoIntro: React.FC<LogoIntroProps> = ({ customLogoUrl, onComplete 
 
   const taglineLetters = "IDEAS • INNOVATION • IMPACT".split("");
 
+  // Mouse Parallax Coordinates for 3D Tilt Experience
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    const x = (clientX / innerWidth - 0.5) * 16;
+    const y = (clientY / innerHeight - 0.5) * 16;
+    setMousePos({ x, y });
+  };
+
   const handleCtaClick = (destination: string) => {
     onComplete();
     navigate(destination);
@@ -67,22 +78,41 @@ export const LogoIntro: React.FC<LogoIntroProps> = ({ customLogoUrl, onComplete 
         initial={{ opacity: 1 }}
         exit={{ opacity: 0, scale: 1.03 }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        onMouseMove={handleMouseMove}
         className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#FFFDFB] overflow-hidden select-none"
       >
         {/* ========================================================================= */}
-        {/* SCENE 1 — SOFT BEGINNING: WARM IVORY BG & SOFT CENTER GLOW                */}
+        {/* SCENE 1 — SOFT BEGINNING: WARM IVORY BG & ROTATING LIGHT BEAMS            */}
         {/* ========================================================================= */}
         <div className="absolute inset-0 bg-radial from-[#FFFFFF] via-[#FFF9F6] to-[#F9EFEF] pointer-events-none" />
         
+        {/* Volumetric Rotating Light Beams in the Background */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-[800px] h-[800px] rounded-full pointer-events-none opacity-20"
+          style={{
+            background: 'conic-gradient(from 0deg at 50% 50%, rgba(201,164,92,0.15) 0deg, transparent 35deg, rgba(201,79,120,0.12) 90deg, transparent 130deg, rgba(201,164,92,0.18) 180deg, transparent 230deg, rgba(93,159,190,0.15) 270deg, transparent 320deg, rgba(201,164,92,0.15) 360deg)',
+          }}
+        />
+
         {/* Subtle center ambient radial glow */}
         <motion.div
           animate={{
-            scale: scene >= 7 ? [1.1, 1.25, 1.1] : [0.9, 1.1, 0.9],
-            opacity: scene >= 2 ? [0.35, 0.6, 0.35] : 0.25,
+            scale: scene >= 7 ? [1.1, 1.3, 1.1] : [0.9, 1.15, 0.9],
+            opacity: scene >= 2 ? [0.35, 0.65, 0.35] : 0.25,
           }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute w-[500px] h-[500px] sm:w-[650px] sm:h-[650px] rounded-full bg-gradient-to-tr from-[#F7DDE3]/40 via-[#E8D3A3]/30 to-[#DDF3FC]/35 blur-[100px] pointer-events-none"
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute w-[500px] h-[500px] sm:w-[650px] sm:h-[650px] rounded-full bg-gradient-to-tr from-[#F7DDE3]/40 via-[#E8D3A3]/35 to-[#DDF3FC]/40 blur-[100px] pointer-events-none"
         />
+
+        {/* Pulsating Ripple Wave on Scene Changes */}
+        {scene >= 3 && (
+          <div className="absolute w-72 h-72 rounded-full border border-[#C9A45C]/30 animate-ripple pointer-events-none" />
+        )}
+        {scene >= 5 && (
+          <div className="absolute w-80 h-80 rounded-full border border-[#C94F78]/25 animate-ripple pointer-events-none" style={{ animationDelay: '1.2s' }} />
+        )}
 
         {/* Tiny Champagne-Gold Particles */}
         {particles.map((p, idx) => (
@@ -90,9 +120,9 @@ export const LogoIntro: React.FC<LogoIntroProps> = ({ customLogoUrl, onComplete 
             key={idx}
             initial={{ opacity: 0, y: 15, scale: 0.5 }}
             animate={{
-              opacity: [0.25, 0.85, 0.25],
-              y: [-12, 12, -12],
-              scale: [0.85, 1.2, 0.85],
+              opacity: [0.25, 0.9, 0.25],
+              y: [-14, 14, -14],
+              scale: [0.85, 1.25, 0.85],
             }}
             transition={{
               duration: p.dur,
@@ -111,15 +141,17 @@ export const LogoIntro: React.FC<LogoIntroProps> = ({ customLogoUrl, onComplete 
         ))}
 
         {/* ========================================================================= */}
-        {/* MAIN CINEMATIC STAGE CONTAINER                                            */}
+        {/* MAIN CINEMATIC STAGE CONTAINER WITH 3D PERSPECTIVE TILT                   */}
         {/* ========================================================================= */}
         <motion.div
           animate={{
             scale: scene === 8 ? 0.85 : scene >= 2 && scene < 7 ? 1.04 : 1,
             y: scene === 8 ? -40 : 0,
+            rotateX: mousePos.y * -0.5,
+            rotateY: mousePos.x * 0.5,
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative flex flex-col items-center justify-center z-10 w-full max-w-2xl px-4"
+          className="relative flex flex-col items-center justify-center z-10 w-full max-w-2xl px-4 perspective-1000"
         >
           {/* Circular Frame & Vector Medallion Layer */}
           <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
@@ -132,7 +164,7 @@ export const LogoIntro: React.FC<LogoIntroProps> = ({ customLogoUrl, onComplete 
                 scale: scene >= 2 ? 1 : 0.8,
               }}
               transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-2 rounded-full bg-gradient-to-br from-white via-[#FFF9F6] to-[#F7EBEF] shadow-[0_15px_40px_-10px_rgba(201,164,92,0.25)] border border-[#C9A45C]/20 pointer-events-none"
+              className="absolute inset-2 rounded-full bg-gradient-to-br from-white via-[#FFF9F6] to-[#F7EBEF] shadow-[0_20px_50px_-10px_rgba(201,164,92,0.3)] border border-[#C9A45C]/25 pointer-events-none"
             />
 
             {/* Custom Uploaded Logo Mode Support */}

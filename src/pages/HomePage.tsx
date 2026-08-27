@@ -181,16 +181,30 @@ export const HomePage: React.FC<HomePageProps> = ({
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.9, delay: 0.2 }}
-                className="relative"
+                className="relative perspective-1000"
               >
-                <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#FFF9F6] via-[#F7DDE3]/60 to-[#DDF3FC]/70 p-4 border border-[#C9A45C]/30 shadow-2xl flex items-center justify-center group">
+                {/* Rotating Outer Dotted Orbital Ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-6 rounded-full border border-dashed border-[#C9A45C]/40 pointer-events-none"
+                />
+
+                {/* Counter-Rotating Rose-Gold Orbital Ring */}
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-10 rounded-full border border-[#C94F78]/20 pointer-events-none"
+                />
+
+                <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#FFF9F6] via-[#F7DDE3]/60 to-[#DDF3FC]/70 p-4 border border-[#C9A45C]/30 shadow-2xl flex items-center justify-center group hover:shadow-[0_25px_60px_-10px_rgba(201,164,92,0.4)] transition-shadow duration-500">
                   <BrandLogo size="hero" customUrl={settings.customLogoUrl} withGlow />
 
-                  {/* Floating Micro Badges */}
+                  {/* Floating Micro Badges with Shimmer */}
                   <motion.div
                     animate={{ y: [-6, 6, -6] }}
                     transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute -top-3 -right-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/30 shadow-lg flex items-center gap-2"
+                    className="absolute -top-3 -right-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/30 shadow-lg flex items-center gap-2 animate-shimmer"
                   >
                     <Award className="w-4 h-4 text-[#C9A45C]" />
                     <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider">
@@ -201,7 +215,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <motion.div
                     animate={{ y: [6, -6, 6] }}
                     transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                    className="absolute -bottom-3 -left-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/30 shadow-lg flex items-center gap-2"
+                    className="absolute -bottom-3 -left-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/30 shadow-lg flex items-center gap-2 animate-shimmer"
                   >
                     <Sparkles className="w-4 h-4 text-[#C94F78]" />
                     <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider">
