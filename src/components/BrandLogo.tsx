@@ -28,12 +28,12 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     return (
       <div className={`relative inline-flex items-center justify-center shrink-0 ${sizeMap[size]} ${className}`}>
         {withGlow && (
-          <div className="absolute inset-0 rounded-full bg-[#C9A45C]/20 blur-xl scale-125 animate-pulse-glow pointer-events-none" />
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#C94F78]/30 via-[#C9A45C]/35 to-[#5D9FBE]/25 blur-xl scale-120 animate-pulse-glow pointer-events-none" />
         )}
         <img
           src={customUrl}
           alt="Mirai — Ideas • Innovation • Impact Official Logo"
-          className="w-full h-full object-contain rounded-full relative z-10"
+          className="w-full h-full object-contain rounded-full relative z-10 drop-shadow-md mx-auto block"
         />
       </div>
     );

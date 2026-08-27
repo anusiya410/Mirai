@@ -177,51 +177,56 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             {/* Hero Right Brand Showcase Card */}
-            <div className="lg:col-span-5 flex justify-center">
+            <div className="lg:col-span-5 flex justify-center items-center py-6">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.9, delay: 0.2 }}
-                className="relative perspective-1000"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative flex items-center justify-center"
               >
                 {/* Rotating Outer Dotted Orbital Ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                  className="absolute -inset-6 rounded-full border border-dashed border-[#C9A45C]/40 pointer-events-none"
+                  transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-4 sm:-inset-6 rounded-full border border-dashed border-[#C9A45C]/40 pointer-events-none"
                 />
 
                 {/* Counter-Rotating Rose-Gold Orbital Ring */}
                 <motion.div
                   animate={{ rotate: -360 }}
-                  transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-                  className="absolute -inset-10 rounded-full border border-[#C94F78]/20 pointer-events-none"
+                  transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-8 sm:-inset-10 rounded-full border border-[#C94F78]/25 pointer-events-none"
                 />
 
-                <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#FFF9F6] via-[#F7DDE3]/60 to-[#DDF3FC]/70 p-6 border border-[#C9A45C]/30 shadow-2xl flex items-center justify-center group hover:shadow-[0_25px_60px_-10px_rgba(201,164,92,0.4)] transition-shadow duration-500">
-                  <BrandLogo size="hero" customUrl={settings.customLogoUrl} withGlow />
+                {/* Circular Glassmorphic Showcase Base */}
+                <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-92 md:h-92 rounded-full bg-gradient-to-tr from-white via-[#FFF9F6] to-[#F7EBEF] p-4 sm:p-6 border border-[#C9A45C]/35 shadow-[0_20px_50px_rgba(201,164,92,0.22)] flex items-center justify-center">
+                  
+                  {/* Central Pristine Centered Logo */}
+                  <div className="w-full h-full flex items-center justify-center">
+                    <BrandLogo size="hero" customUrl={settings.customLogoUrl} withGlow className="w-48 h-48 sm:w-60 sm:h-60" />
+                  </div>
 
-                  {/* Floating Micro Badge: Top Left */}
+                  {/* Floating Micro Badge 1: Top Left / Top Right */}
                   <motion.div
-                    animate={{ y: [-6, 6, -6], x: [-3, 3, -3] }}
-                    transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute top-2 -left-4 sm:top-6 sm:-left-10 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/35 shadow-xl flex items-center gap-2 animate-shimmer z-20"
+                    animate={{ y: [-5, 5, -5] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute -top-3 right-0 sm:right-2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C9A45C]/40 shadow-lg flex items-center gap-1.5 z-20 animate-shimmer"
                   >
-                    <Award className="w-4 h-4 text-[#C9A45C]" />
-                    <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
-                      Ideas • Innovation
+                    <Award className="w-3.5 h-3.5 text-[#C9A45C]" />
+                    <span className="text-[10px] sm:text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
+                      IDEAS • INNOVATION
                     </span>
                   </motion.div>
 
-                  {/* Floating Micro Badge: Bottom Right */}
+                  {/* Floating Micro Badge 2: Bottom Left */}
                   <motion.div
-                    animate={{ y: [6, -6, 6], x: [3, -3, 3] }}
-                    transition={{ duration: 6.2, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                    className="absolute bottom-2 -right-4 sm:bottom-6 sm:-right-8 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-[#C9A45C]/35 shadow-xl flex items-center gap-2 animate-shimmer z-20"
+                    animate={{ y: [5, -5, 5] }}
+                    transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                    className="absolute -bottom-3 left-0 sm:left-2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C94F78]/35 shadow-lg flex items-center gap-1.5 z-20 animate-shimmer"
                   >
-                    <Sparkles className="w-4 h-4 text-[#C94F78]" />
-                    <span className="text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
-                      Impact Driven
+                    <Sparkles className="w-3.5 h-3.5 text-[#C94F78]" />
+                    <span className="text-[10px] sm:text-[11px] font-bold text-[#342C32] uppercase tracking-wider whitespace-nowrap">
+                      IMPACT DRIVEN
                     </span>
                   </motion.div>
                 </div>
