@@ -108,32 +108,17 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </span>
               </motion.div>
 
-              <div className="mb-8">
-                {/* Line 1: Soft Fade Upward */}
-                <motion.span
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-bold text-[#342C32] leading-[1.04] tracking-tight block"
-                >
-                  Beautiful Websites for
-                </motion.span>
-                
-                {/* Line 2: Word-by-word reveal with single rose-gold shimmer sweep */}
-                <div className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-bold tracking-tight inline-flex items-center gap-3.5 flex-wrap">
-                  {['Beautiful', 'Businesses.'].map((word, wIdx) => (
-                    <motion.span
-                      key={word}
-                      initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      transition={{ duration: 0.7, delay: 0.35 + wIdx * 0.18, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] via-[#E8B8C4] to-[#C9A45C] relative"
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-bold text-[#342C32] leading-[1.06] tracking-tight mb-8"
+              >
+                <span>Beautiful Websites for </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C94F78] via-[#B83B67] to-[#C9A45C] inline-block font-extrabold">
+                  Beautiful Businesses.
+                </span>
+              </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
