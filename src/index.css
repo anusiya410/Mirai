@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Artistic Flair Luxury Gradients & Utilities */
+.bg-mesh-luxury {
+  background-color: #FFF9F6;
+  background-image: 
+    radial-gradient(at 10% 15%, rgba(232, 184, 196, 0.35) 0px, transparent 50%),
+    radial-gradient(at 85% 20%, rgba(169, 221, 242, 0.3) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(247, 221, 227, 0.25) 0px, transparent 50%),
+    radial-gradient(at 80% 85%, rgba(201, 164, 92, 0.15) 0px, transparent 50%),
+    radial-gradient(at 15% 85%, rgba(221, 243, 252, 0.35) 0px, transparent 50%);
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(201, 164, 92, 0.25) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-dot-pattern-white {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 164, 92, 0.25);
+}
+
+.bg-glass-card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bg-glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(201, 164, 92, 0.6);
+  box-shadow: 0 20px 40px -15px rgba(201, 79, 120, 0.15), 0 0 20px 2px rgba(201, 164, 92, 0.18);
+  transform: translateY(-4px);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C9A45C 0%, #E8D3A3 50%, #B88E3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-pink-gradient {
+  background: linear-gradient(135deg, #C94F78 0%, #E8B8C4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-artistic-gradient {
+  background: linear-gradient(90deg, #C94F78 0%, #E8B8C4 50%, #C9A45C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-glow {
+  border-color: #C9A45C;
+  box-shadow: 0 0 15px rgba(201, 164, 92, 0.25);
+}
+
+/* Shimmer & Floating Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.08); }
+}
+
+@keyframes spin-very-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-very-slow 24s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF9F6;
+}
+::-webkit-scrollbar-thumb {
+  background: #E8B8C4;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C94F78;
+}
